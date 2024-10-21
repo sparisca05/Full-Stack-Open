@@ -4,6 +4,8 @@ export default function App() {
   const [countGood, setCountGood] = useState(0)
   const [countNeutral, setCountNeutral] = useState(0)
   const [countBad, setCountBad] = useState(0)
+  const average = (countGood - countBad) / (countGood + countNeutral + countBad)
+  const positive = countGood / (countGood + countNeutral + countBad) * 100
 
   return (
     <>
@@ -16,6 +18,9 @@ export default function App() {
         <Statistic text='good' value={countGood}/>
         <Statistic text='neutral' value={countNeutral}/>
         <Statistic text='bad' value={countBad}/>
+        <Statistic text='all' value={countGood + countNeutral + countBad}/>
+        <Statistic text='average' value={average || 0}/>
+        <Statistic text='positive' value={positive || 0}/>
       </div>
     </>
   )
