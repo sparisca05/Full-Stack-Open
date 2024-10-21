@@ -15,12 +15,17 @@ export default function App() {
         <CountButton text='neutral' count={countNeutral} setCount={setCountNeutral}/>
         <CountButton text='bad' count={countBad} setCount={setCountBad}/>
         <h1>statistics</h1>
-        <Statistic text='good' value={countGood}/>
-        <Statistic text='neutral' value={countNeutral}/>
-        <Statistic text='bad' value={countBad}/>
-        <Statistic text='all' value={countGood + countNeutral + countBad}/>
-        <Statistic text='average' value={average || 0}/>
-        <Statistic text='positive' value={positive || 0}/>
+        {countGood + countNeutral + countBad === 0 ? <p>No feedback given</p>
+        : (
+          <>
+            <Statistic text='good' value={countGood}/>
+            <Statistic text='neutral' value={countNeutral}/>
+            <Statistic text='bad' value={countBad}/>
+            <Statistic text='all' value={countGood + countNeutral + countBad}/>
+            <Statistic text='average' value={average || 0}/>
+            <Statistic text='positive' value={positive || 0}/>
+          </>
+        )}
       </div>
     </>
   )
