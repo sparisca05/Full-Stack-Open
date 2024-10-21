@@ -5,7 +5,7 @@ export default function App() {
   const [countNeutral, setCountNeutral] = useState(0)
   const [countBad, setCountBad] = useState(0)
   const average = (countGood - countBad) / (countGood + countNeutral + countBad)
-  const positive = countGood / (countGood + countNeutral + countBad) * 100
+  const positive = countGood / (countGood + countNeutral + countBad) * 100 + ' %'
 
   return (
     <>
@@ -40,21 +40,24 @@ function CountButton({ text, setCount }) {
 
 function Statistics({ countGood, countNeutral, countBad, average, positive }) {
   return (
-    <>
-      <StatisticLine text='good' value={countGood}/>
-      <StatisticLine text='neutral' value={countNeutral}/>
-      <StatisticLine text='bad' value={countBad}/>
-      <StatisticLine text='all' value={countGood + countNeutral + countBad}/>
-      <StatisticLine text='average' value={average || 0}/>
-      <StatisticLine text='positive' value={positive || 0}/>
-    </>
+    <table>
+      <tbody>
+        <StatisticLine text='good' value={countGood}/>
+        <StatisticLine text='neutral' value={countNeutral}/>
+        <StatisticLine text='bad' value={countBad}/>
+        <StatisticLine text='all' value={countGood + countNeutral + countBad}/>
+        <StatisticLine text='average' value={average || 0}/>
+        <StatisticLine text='positive' value={positive || 0}/>
+      </tbody>
+    </table>
   )
 }
 
 function StatisticLine({ text, value }) {
   return (
-    <p>
-      {text} {value}
-    </p>
+    <tr>
+      <th>{text}</th>
+      <td>{value}</td>
+    </tr>
   )
 }
